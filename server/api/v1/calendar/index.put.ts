@@ -1,9 +1,15 @@
 import prisma from '~~/lib/prisma'
 
 export default defineEventHandler(async (event) => {
-    const userId = await performAuthCheck(event, (error) => {
-        return sendRedirect(event, '/auth/error?error=' + error)
-    });
+    const auth = await performAuthCheck(event)
+
+    if ('statusCode' in auth) {
+        return sendRedirect(
+            event,
+            `/auth/error?error=${encodeURIComponent(auth.body.statusMessage)}`
+        )
+    }
+
     const body = await readBody(event);
     const {id, visibility} = body;
 
@@ -34,7 +40,7 @@ export default defineEventHandler(async (event) => {
         }
     }
 
-    const calendarUser = calendar.CalendarUser.find(user => user.userId === userId);
+    const calendarUser = calendar.CalendarUser.find(user => user.userId === auth.userId);
     if (!calendarUser) {
         return {
             statusCode: 403,

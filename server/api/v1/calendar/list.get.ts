@@ -2,9 +2,13 @@ import prisma from "~~/lib/prisma";
 import {flattenPrismaIncludeResult} from "~~/lib/prismaFlatten";
 
 export default defineEventHandler(async (event) => {
-    const userId = await performAuthCheck(event, (error) => {
-        return sendRedirect(event, '/auth/error?error=' + error)
-    });
+    const auth = await performAuthCheck(event);
+    if ('statusCode' in auth) {
+        return sendRedirect(
+            event,
+            `/auth/error?error=${encodeURIComponent(auth.body.statusMessage)}`
+        )
+    }
     const filter = {
         select: {
             calendar: {
@@ -26,14 +30,14 @@ export default defineEventHandler(async (event) => {
     }
 
     const calendarList = await prisma.calendarUser.findMany({
-        where: {userId: userId},
+        where: {userId: auth.userId},
         ...filter
     })
 
     const finalCalendar = calendarList.map((cal) => {
         const calendar = cal.calendar;
         if (!calendar) return null; // skip if no calendar found
-        const userRole = cal.calendar.CalendarUser.find(cu => cu.user.id === userId)?.role;
+        const userRole = cal.calendar.CalendarUser.find(cu => cu.user.id === auth.userId)?.role;
         return {
             role: userRole,
             ...calendar,

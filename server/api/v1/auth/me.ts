@@ -1,10 +1,13 @@
 export default defineEventHandler(async (event) => {
-    await performAuthCheck(event, (error) => {
+    const auth = await performAuthCheck(event);
+    if ('statusCode' in auth) {
         return {
             statusCode: 401,
-            body: {error}
+            body: {
+                statusMessage: auth.body.statusMessage
+            }
         }
-    });
+    }
 
     return {
         statusCode: 200,
