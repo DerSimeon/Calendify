@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <title>Calendify Magic Link</title>
+    <style>
+        :root { color-scheme: light dark; supported-color-schemes: light dark; }
+        @media (prefers-color-scheme: dark) {
+            .bg { background-color: #0b0b0c !important; }
+            .card { background-color: #111113 !important; border-color: #2a2a2e !important; }
+            .text { color: #e6e6e9 !important; }
+            .muted { color: #b0b0b5 !important; }
+        }
+        @media only screen and (max-width: 640px) {
+            .container { width: 100% !important; }
+            .card { padding: 22px !important; }
+            .btn { width: 100% !important; }
+            .title { font-size: 22px !important; }
+        }
+    </style>
+</head>
+<body class="bg" style="margin:0; padding:0; width:100% !important; background-color:#0b0b0c; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;">
+<!-- Preheader (hidden) -->
+<div style="display:none; font-size:1px; line-height:1px; max-height:0; max-width:0; opacity:0; overflow:hidden; mso-hide:all;">
+    Your magic link to sign in to Calendify.This link expires in {{EXPIRES_IN_MINUTES}} minutes.
+</div>
+
+<!-- Full width background -->
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:
+      radial-gradient(600px 600px at 20% 0%, rgba(217,70,239,0.10), rgba(0,0,0,0) 60%),
+      radial-gradient(800px 600px at 90% 110%, rgba(124,58,237,0.10), rgba(0,0,0,0) 65%); background-color:#0b0b0c;">
+    <tr>
+        <td align="center" style="padding:28px 16px;">
+            <!-- Centered container -->
+            <table class="container" role="presentation" cellpadding="0" cellspacing="0" border="0" width="640" style="width:640px; max-width:640px;">
+
+                <!-- Card -->
+                <tr>
+                    <td class="card" style="background:#111113; border:1px solid #2a2a2e; border-radius:16px; padding:28px;">
+                        <!-- Accent bar -->
+                        <div style="height:6px; width:100%; border-radius:6px; background:linear-gradient(90deg,#d946ef,#7c3aed); margin-bottom:18px;"></div>
+
+                        <!-- Title & intro -->
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td class="text" style="font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji; color:#e8e8ec;">
+                                    <h1 class="title" style="margin:0 0 8px 0; font-size:24px; line-height:1.25; font-weight:800; letter-spacing:-0.01em;">
+                                        Access Calendify instantly
+                                    </h1>
+                                    <p class="muted" style="margin:0 0 18px 0; color:#bebec4; font-size:14px; line-height:1.6;">
+                                        Hi {{EMAIL}}, use the secure magic link below to sign in. <br>This link expires in {{EXPIRES_IN_MINUTES}} minutes.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Call-to-action button -->
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td align="center" style="padding:6px 0 16px 0;">
+                                    <a class="btn" href="{{MAGIC_LINK}}" target="_blank" style="display:inline-block; background:linear-gradient(90deg,#d946ef,#7c3aed); color:#ffffff !important; text-decoration:none; font-weight:700; font-size:14px; line-height:100%; padding:14px 22px; border-radius:10px; box-shadow:0 8px 24px rgba(124,58,237,0.25);">
+                                        Sign in to Calendify
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Fallback URL -->
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                            <tr>
+                                <td class="muted" style="color:#b0b0b5; font-size:12px; line-height:1.6; word-break:break-word;">
+                                    <p style="margin:0 0 8px 0;">If the button doesn't work, paste this URL into your browser:</p>
+                                    <p style="margin:0;">
+                                        <a href="{{MAGIC_LINK}}" style="color:#c084fc; text-decoration:underline; word-break:break-all;">{{MAGIC_LINK}}</a>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Minimal security note -->
+                        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:16px;">
+                            <tr>
+                                <td class="muted" style="color:#9a9aa0; font-size:12px; line-height:1.6;">
+                                    <p style="margin:0;">Didn't request this? Ignore this email.</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                    <td align="center" style="padding:16px 6px 0 6px;">
+                        <p class="muted" style="margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; color:#9a9aa0; font-size:12px; line-height:1.6;">
+                            © {{YEAR}} Calendify • Free and Open Source
+                        </p>
+                        <p class="muted" style="margin:6px 0 0 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; color:#9a9aa0; font-size:12px; line-height:1.6;">
+                            <a href="https://github.com/dersimeon/calendify" target="_blank" style="color:#b794f4; text-decoration:underline;">GitHub</a>
+                            ·
+                            <a href="{{APP_URL}}" target="_blank" style="color:#b794f4; text-decoration:underline;">Website</a>
+                        </p>
+                    </td>
+                </tr>
+                <tr><td style="height:16px; line-height:16px; font-size:0;">&nbsp;</td></tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
