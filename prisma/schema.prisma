@@ -28,6 +28,7 @@ model Calendar {
   id            String          @id @default(cuid())
   slug          String          @unique
   name          String
+  description   String?
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
   visibility    Visibility      @default(PRIVATE) // e.g., "private", "public"
@@ -43,8 +44,8 @@ model CalendarUser {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
 
-  calendar Calendar @relation(fields: [calendarId], references: [id])
-  user     User     @relation(fields: [userId], references: [id])
+  calendar Calendar @relation(fields: [calendarId], references: [id], onDelete: Cascade)
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model CalendarEvent {
@@ -57,7 +58,7 @@ model CalendarEvent {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
-  calendar Calendar @relation(fields: [calendarId], references: [id])
+  calendar Calendar @relation(fields: [calendarId], references: [id], onDelete: Cascade)
 }
 
 model LoginAttempt {

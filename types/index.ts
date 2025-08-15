@@ -1,4 +1,5 @@
-export type CalendarRole = "OWNER" | "EDITOR"
+export type CalendarRole = "OWNER" | "EDITOR" | "VIEWER"
+export type CalendarVisibility = "PRIVATE" | "PUBLIC"
 
 export interface Member {
     id: string
@@ -16,12 +17,14 @@ export interface Calendar {
     updatedAt: string
     visibility: "PRIVATE" | "PUBLIC"
     CalendarUser: Member[]
+    CalendarEvent?: CalendarEvent[]
 }
 
 export interface CalendarEvent {
     id: string
     title: string
-    startISO: string
-    endISO: string
+    description?: string
+    startTime: string
+    endTime: string
     color: "violet" | "fuchsia" | "emerald" | "rose" | "amber"
 }
